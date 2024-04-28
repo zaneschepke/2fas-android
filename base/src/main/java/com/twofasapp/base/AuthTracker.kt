@@ -25,10 +25,6 @@ class AuthTracker(
         reset()
     }
 
-    fun onBrowserExtRequest() {
-        reset()
-    }
-
     fun onAuthenticateScreen() {
         reset()
     }

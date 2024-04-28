@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 13,
-    "identityHash": "00659315e21cc36273e2fcd4ae35ce93",
+    "identityHash": "2e1ef453b8db178dc640f27ad5b344e9",
     "entities": [
       {
         "tableName": "local_services",
@@ -175,44 +175,6 @@
         "foreignKeys": []
       },
       {
-        "tableName": "paired_browsers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `extensionPublicKey` TEXT NOT NULL, `pairedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "extensionPublicKey",
-            "columnName": "extensionPublicKey",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "pairedAt",
-            "columnName": "pairedAt",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": false,
-          "columnNames": [
-            "id"
-          ]
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
         "tableName": "notifications",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `category` TEXT NOT NULL, `link` TEXT NOT NULL, `message` TEXT NOT NULL, `publishTime` INTEGER NOT NULL, `push` INTEGER NOT NULL, `platform` TEXT NOT NULL, `isRead` INTEGER NOT NULL, `periodicType` TEXT, `internalRoute` TEXT, PRIMARY KEY(`id`))",
         "fields": [
@@ -290,7 +252,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '00659315e21cc36273e2fcd4ae35ce93')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2e1ef453b8db178dc640f27ad5b344e9')"
     ]
   }
 }

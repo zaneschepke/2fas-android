@@ -87,12 +87,6 @@ private fun SettingsScreen(
                 }
             }
 
-            item {
-                SettingsLink(title = TwLocale.strings.settingsBrowserExt, icon = TwIcons.Extension) {
-                    listener.openBrowserExt()
-                }
-            }
-
             item { SettingsDivider() }
 
             item {

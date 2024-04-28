@@ -10,8 +10,6 @@ import com.twofasapp.base.lifecycle.AuthAware
 import com.twofasapp.base.lifecycle.AuthLifecycle
 import com.twofasapp.data.session.SettingsRepository
 import com.twofasapp.designsystem.AppThemeState
-import com.twofasapp.workmanager.OnAppStartWork
-import com.twofasapp.workmanager.OnAppUpdatedWorkDispatcher
 import com.twofasapp.workmanager.SyncTimeWorkDispatcher
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
@@ -22,7 +20,6 @@ class StartActivity : AppCompatActivity(), AuthAware {
     private val settingsRepository: SettingsRepository by inject()
     private val authTracker: AuthTracker by inject()
     private val deeplinkHandler: DeeplinkHandler by inject()
-    private val onAppUpdatedWorkDispatcher: OnAppUpdatedWorkDispatcher by inject()
     private val syncTimeWorkDispatcher: SyncTimeWorkDispatcher by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +28,7 @@ class StartActivity : AppCompatActivity(), AuthAware {
 
         installSplashScreen()
 
-        onAppUpdatedWorkDispatcher.dispatch()
         syncTimeWorkDispatcher.dispatch()
-        OnAppStartWork.dispatch(this)
 
         if (savedInstanceState == null) {
             authTracker.onSplashScreen()

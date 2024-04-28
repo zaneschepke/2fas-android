@@ -2,16 +2,13 @@ package com.twofasapp.di
 
 import com.twofasapp.cipher.di.CipherModule
 import com.twofasapp.common.di.CommonModule
-import com.twofasapp.data.browserext.di.DataBrowserExtModule
 import com.twofasapp.data.cloud.di.CloudModule
 import com.twofasapp.data.notifications.di.DataNotificationsModule
-import com.twofasapp.data.push.di.DataPushModule
 import com.twofasapp.data.services.di.DataServicesModule
 import com.twofasapp.data.session.di.DataSessionModule
 import com.twofasapp.feature.about.di.AboutModule
 import com.twofasapp.feature.appsettings.di.AppSettingsModule
 import com.twofasapp.feature.backup.di.BackupModule
-import com.twofasapp.feature.browserext.di.BrowserExtModule
 import com.twofasapp.feature.di.QrScanModule
 import com.twofasapp.feature.externalimport.di.ExternalImportModule
 import com.twofasapp.feature.home.di.HomeModule
@@ -43,8 +40,6 @@ object Modules {
         DataNotificationsModule(),
         DataSessionModule(),
         DataServicesModule(),
-        DataBrowserExtModule(),
-        DataPushModule(),
     )
 
     private val feature = listOf(
@@ -58,7 +53,6 @@ object Modules {
         QrScanModule(),
         BackupModule(),
         WidgetModule(),
-        BrowserExtModule(),
         SecurityModule(),
     )
 

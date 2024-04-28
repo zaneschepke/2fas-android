@@ -104,17 +104,6 @@ internal fun MainScreen(
                         startDestination = startDestination,
                         onServiceAddedSuccessfully = { viewModel.serviceAdded(it) },
                     )
-
-                    if (uiState.browserExtRequests.isNotEmpty()) {
-                        val browserExtRequest = uiState.browserExtRequests.first()
-                        BrowserExtRequestDialog(
-                            browserExtRequest = browserExtRequest,
-                            onRequestHandled = {
-                                viewModel.browserExtRequestHandled(browserExtRequest)
-                                NotificationManagerCompat.from(context).cancel(null, browserExtRequest.request.requestId.hashCode())
-                            }
-                        )
-                    }
                 }
             }
         }

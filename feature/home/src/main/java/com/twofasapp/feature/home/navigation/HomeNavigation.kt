@@ -72,7 +72,6 @@ fun NavGraphBuilder.homeNavigation(
 interface HomeNavigationListener {
     fun openService(activity: Activity, serviceId: Long)
     fun openExternalImport()
-    fun openBrowserExt()
     fun openSecurity(activity: Activity)
     fun openBackup(turnOnBackup: Boolean)
     fun openAppSettings()

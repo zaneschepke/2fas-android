@@ -34,11 +34,6 @@ import com.twofasapp.feature.backup.navigation.BackupExportRoute
 import com.twofasapp.feature.backup.navigation.BackupImportRoute
 import com.twofasapp.feature.backup.navigation.BackupRoute
 import com.twofasapp.feature.backup.navigation.BackupSettingsRoute
-import com.twofasapp.feature.browserext.navigation.BrowserExtDetailsRoute
-import com.twofasapp.feature.browserext.navigation.BrowserExtPairingRoute
-import com.twofasapp.feature.browserext.navigation.BrowserExtPermissionRoute
-import com.twofasapp.feature.browserext.navigation.BrowserExtRoute
-import com.twofasapp.feature.browserext.navigation.BrowserExtScanRoute
 import com.twofasapp.feature.externalimport.domain.ImportType
 import com.twofasapp.feature.externalimport.navigation.ExternalImportResultRoute
 import com.twofasapp.feature.externalimport.navigation.ExternalImportRoute
@@ -122,10 +117,6 @@ internal fun MainNavHost(
 
                     override fun openExternalImport() {
                         navController.navigate(Screen.ExternalImportSelector.route)
-                    }
-
-                    override fun openBrowserExt() {
-                        navController.navigate(Screen.BrowserExt.route)
                     }
 
                     override fun openSecurity(activity: Activity) {
@@ -240,45 +231,6 @@ internal fun MainNavHost(
             composable(Screen.BackupImport.route, listOf(NavArg.ImportFileUri)) {
                 BackupImportRoute(
                     goBack = { navController.popBackStack() }
-                )
-            }
-
-            composable(Screen.BrowserExt.route) {
-                BrowserExtRoute(
-                    openScan = { navController.navigate(Screen.BrowserExtScan.route) },
-                    openDetails = { extensionId ->
-                        navController.navigate(Screen.BrowserExtDetails.routeWithArgs(NavArg.ExtensionId to extensionId))
-                    }
-                )
-            }
-
-            composable(Screen.BrowserExtPermission.route) {
-                BrowserExtPermissionRoute(
-                    openMain = { navController.popBackStack(Screen.BrowserExt.route, false) }
-                )
-            }
-
-            composable(Screen.BrowserExtScan.route) {
-                BrowserExtScanRoute(
-                    openProgress = { extensionId ->
-                        navController.navigate(Screen.BrowserExtPairing.routeWithArgs(NavArg.ExtensionId to extensionId)) {
-                            popUpTo(Screen.BrowserExt.route)
-                        }
-                    }
-                )
-            }
-
-            composable(Screen.BrowserExtPairing.route, listOf(NavArg.ExtensionId)) {
-                BrowserExtPairingRoute(
-                    openMain = { navController.popBackStack(Screen.BrowserExt.route, false) },
-                    openPermission = { navController.navigate(Screen.BrowserExtPermission.route) { popUpTo(Screen.BrowserExt.route) } },
-                    openScan = { navController.navigate(Screen.BrowserExtScan.route) { popUpTo(Screen.BrowserExt.route) } }
-                )
-            }
-
-            composable(Screen.BrowserExtDetails.route, listOf(NavArg.ExtensionId)) {
-                BrowserExtDetailsRoute(
-                    openMain = { navController.popBackStack(Screen.BrowserExt.route, false) },
                 )
             }
 

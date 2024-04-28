@@ -36,7 +36,7 @@ Please make sure your pull request includes the following:
 We will review your pull request and provide feedback as soon as possible. Thank you for your contribution!
 
 ### App architecture and code style
-The app is over five years old and has evolved over time. There is some code that needs to be executed on every update to ensure that users migrating from older versions of the app can keep their tokens and data intact. Currently, the app uses Room and EncryptedSharedPreferences for persistence, but it used to use ObjectBox and SecurePreferences. We still see users updating 2FAS from very old versions, so we need to keep these libraries in the app.
+The app is over five years old and has evolved over time. There is some code that needs to be executed on every update to ensure that users migrating from older versions of the app can keep their tokens and data intact. Currently, the app uses Room and EncryptedSharedPreferences for persistence.
 
 The app is partially modularized by feature layers. The older parts of the app are written in classic MVP + RxJava, while the latest features use MVVM with Jetpack Compose and Coroutines. Because of this "hybrid" structure with two different async frameworks, some use cases have had to be duplicated or wrapped with additional layers. The main goal is to refactor the app step by step to match the latest Google standards (using the NIA app as an example):
 

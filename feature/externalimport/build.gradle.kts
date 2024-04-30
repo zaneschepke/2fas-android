@@ -38,6 +38,8 @@ dependencies {
 
     implementation(project(":parsers"))
 
+
+
     implementation(libs.bundles.compose)
     implementation(libs.bundles.viewModel)
     implementation(libs.bundles.accompanist)

@@ -13,7 +13,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.twofasapp.common.ktx.encodeBase64ToString
 import com.twofasapp.designsystem.common.TwTopAppBar
 import com.twofasapp.feature.qrscan.QrScan
-import com.twofasapp.feature.qrscan.QrScanFinder
 import com.twofasapp.locale.TwLocale
 import org.koin.androidx.compose.koinViewModel
 
@@ -48,7 +47,6 @@ private fun ScreenContent(
             contentAlignment = Alignment.Center,
         ) {
             QrScan(
-                modifier = Modifier.fillMaxSize(),
                 onScanned = {
                     if (qrScanEnabled) {
                         qrScanEnabled = false
@@ -56,8 +54,6 @@ private fun ScreenContent(
                     }
                 },
             )
-
-            QrScanFinder()
         }
     }
 }

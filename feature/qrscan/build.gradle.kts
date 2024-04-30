@@ -13,6 +13,10 @@ dependencies {
     implementation(project(":core:locale"))
     implementation(project(":core:designsystem"))
 
+    // barcode scanning
+    implementation(libs.zxing.android.embedded)
+    implementation(libs.zxing.core)
+
     implementation(libs.bundles.compose)
     implementation(libs.bundles.viewModel)
     implementation(libs.bundles.accompanist)

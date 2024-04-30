@@ -56,14 +56,15 @@ internal fun AddServiceScanScreen(
     onAddedSuccessfully: (RecentlyAddedService) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val context = LocalContext.current
+    var showQrScanner by remember {
+        mutableStateOf(false)
+    }
     val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> uri?.let { viewModel.onLoadFromGallery(it) } }
     )
 
     var askForPermission by remember { mutableStateOf(true) }
-    val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
 
     LaunchedEffect(Unit) {
         viewModel.uiEvents.collect {
@@ -84,62 +85,19 @@ internal fun AddServiceScanScreen(
             showBackButton = false,
         )
 
-        Text(
-            text = TwLocale.strings.addDescription,
-            color = TwTheme.color.onSurfacePrimary,
-            style = TwTheme.typo.body1,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(horizontal = 16.dp),
-        )
-
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .fillMaxWidth()
-                .height(260.dp)
-        ) {
+        if(showQrScanner) {
             QrScan(
-                modifier = Modifier.fillMaxSize(),
                 onScanned = {
-                    if (uiState.enabled) {
-                        viewModel.onScanned(it)
-                    }
+                    showQrScanner = false
+                    viewModel.onScanned(it)
                 }
             )
-
-            if (cameraPermissionState.status is PermissionStatus.Denied) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-
-                    Text(
-                        text = TwLocale.strings.permissionCameraBody,
-                        color = Color.White.copy(alpha = 0.4f),
-                        style = TwTheme.typo.body3,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    TwTextButton(
-                        text = TwLocale.strings.settingsSettings,
-                        onClick = { context.startActivity(context.settingsIntent) }
-                    )
-                }
-            }
         }
 
-        Text(
-            text = TwLocale.strings.addOtherMethods,
-            color = TwTheme.color.onSurfaceTertiary,
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
-        )
+        SettingsLink(
+            title = TwLocale.strings.scanQr,
+            icon = TwIcons.Qr
+        ) { showQrScanner = true }
 
         SettingsLink(
             title = TwLocale.strings.addEnterManual,
